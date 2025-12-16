@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pırlanta Fiyat Tahmini</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #fdfefe; text-align: center; padding: 40px; }
+        .box { background: #fff; width: 450px; margin: auto; padding: 40px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        h2 { color: #2c3e50; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        label { display: block; text-align: left; margin-top: 15px; font-weight: bold; color: #555; }
+        select, input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 14px; background: #2c3e50; color: #f1c40f; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 25px; transition: 0.3s; }
+        button:hover { background: #1a252f; }
+        .result { font-size: 1.8em; color: #b7950b; margin-top: 30px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>💎 Diamond Price AI</h2>
+        <form action="/predict" method="post">
+            <label>Karat (Ağırlık):</label>
+            <input type="number" step="0.01" name="carat" placeholder="Örn: 0.75" required>
+            
+            <label>Kesim Kalitesi (Cut):</label>
+            <select name="cut">
+                <option value="Ideal">Ideal (En İyi)</option>
+                <option value="Premium">Premium</option>
+                <option value="Very Good">Very Good</option>
+                <option value="Good">Good</option>
+                <option value="Fair">Fair (Düşük)</option>
+            </select>
+            
+            <label>Renk (Color):</label>
+            <select name="color">
+                <option value="D">D (En Beyaz/Renksiz - Pahalı)</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J (Sarımtırak - Ucuz)</option>
+            </select>
+            
+            <label>Berraklık (Clarity):</label>
+            <select name="clarity">
+                <option value="IF">IF (Kusursuz)</option>
+                <option value="VVS1">VVS1</option>
+                <option value="VVS2">VVS2</option>
+                <option value="VS1">VS1</option>
+                <option value="VS2">VS2</option>
+                <option value="SI1">SI1</option>
+                <option value="SI2">SI2</option>
+                <option value="I1">I1 (Kusurlu)</option>
+            </select>
+            
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label>Derinlik % (Depth):</label>
+                    <input type="number" step="0.1" name="depth" placeholder="61.5" required>
+                </div>
+                <div style="flex: 1;">
+                    <label>Tablo % (Table):</label>
+                    <input type="number" step="0.1" name="table" placeholder="55.0" required>
+                </div>
+            </div>
+
+            <label>Uzunluk mm (x):</label>
+            <input type="number" step="0.01" name="x" placeholder="Örn: 5.8" required>
+
+            <button type="submit">FİYATI HESAPLA</button>
+        </form>
+
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>

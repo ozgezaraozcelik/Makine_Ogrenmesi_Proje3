@@ -1,0 +1,17 @@
+# Virtual environments
+sanal_ortam/
+venv/
+.env/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Outputs
+runs/
+wandb/
+
+# OS
+Thumbs.db
+.DS_Store
